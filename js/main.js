@@ -5,7 +5,7 @@ const time = document.getElementById('time'),
     focus = document.getElementById('focus');
 
 // Options
-const showAmPm = true;
+const showAmPm = false;
 
 // Show Time
 function showTime() {
@@ -18,14 +18,19 @@ function showTime() {
     const amPm = hour >= 12 ? 'PM' : 'AM';
 
     // 12hr format
-    hour = hour % 12 || 12;
+    //hour = hour % 12 || 12;
 
     // Output time
-    time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)} ${showAmPm ? amPm : ''}`;
+    time.innerHTML = `${hour}<span id="separator">:</span>${addZero(min)} ${showAmPm ? amPm : ''}`;
 
-    setTimeout(showTime, 1000);
+    setTimeout(showTime, 2000);
 }
 
+var t = setInterval(function () {
+    var ele = document.getElementById('separator');
+    ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+    console.log(ele.style.visibility);
+}, 1000);
 // set background and greeting
 function setBgGreet() {
     let today = new Date(),
@@ -34,15 +39,15 @@ function setBgGreet() {
     if (hour < 12) {
         // morning
         document.body.style.backgroundImage = "url('../img/morning.jpg')";
-        greeting.textContent = 'Good morning';
+        greeting.textContent = 'Good morning, ';
     } else if (hour < 18) {
         // afternoon
         document.body.style.backgroundImage = "url('../img/afternoon.jpg')";
-        greeting.textContent = 'Good afternoon';
+        greeting.textContent = 'Good afternoon, ';
     } else {
         // evening
         document.body.style.backgroundImage = "url('../img/night.jpg')";
-        greeting.textContent = 'Good evening';
+        greeting.textContent = 'Good evening, ';
         document.body.style.color = 'white';
     }
 }
