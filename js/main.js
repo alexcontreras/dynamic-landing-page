@@ -4,10 +4,10 @@ const time = document.getElementById('time'),
     name = document.getElementById('name'),
     focus = document.getElementById('focus');
 
-// options
+// Options
 const showAmPm = true;
 
-// Show time
+// Show Time
 function showTime() {
     let today = new Date(),
         hour = today.getHours(),
